@@ -1,0 +1,28 @@
+#include "machinelearning.h"
+
+#include <fstream>
+#include <iostream>
+
+namespace machinelearning {
+
+// vypočítať presnosť
+void MachineLearning::Accuracy(std::vector<int>& outcome,
+                               std::vector<int>& truth) const {
+  double correct = 0;  // uložiť počet správnych predpovedí
+
+  for (int i = 0; i < num_test_instances_; ++i)
+  // spočítať počet správnych predpovedí
+  {
+    if (outcome[i] == truth[i]) correct++;
+#ifdef DEBUG
+    std::cout << "predict to be " << outcome[i] << " is actually " << truth[i]
+              << std::endl;
+#endif
+  }
+  std::cout << "Total " << num_test_instances_ << " data have " << correct
+            << " correct predictions" << std::endl;
+  double percentage = correct / num_test_instances_;  // vypočítať presnosť
+  std::cout << "Accuracy is " << percentage * 100 << "%" << std::endl;
+}
+
+}  // prostredie machinelearning
